@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  samba:
+    image: dperson/samba
+    container_name: samba
+    restart: always
+    ports:
+      - "139:139"
+      - "445:445"
+    volumes:
+      - /services/samba/shares/RPiShare:/sharepath # i use /services/samba/shares/RPiShare but you can use what u want, it just has to exist
+    command: -u "YOURUSERHERE;YOURPASSWORDHERE" -s "RPiShare;/sharepath;yes;no"
+    networks:
+      - homelab-network
+
+networks:
+  homelab-network:
+    external: true
