@@ -10,19 +10,15 @@ services:
     privileged: true
     network_mode: host
 
-  mqtt-broker:
-    image: eclipse-mosquitto:latest
-    container_name: mqtt-broker
+  esphome:
+    image: ghcr.io/esphome/esphome
+    container_name: esphome
     restart: always
-    ports:
-      - "1883:1883"
-      - "9001:9001"
+    privileged: true
+    network_mode: host
     volumes:
-      - ./mosquitto/config:/mosquitto/config
-      - ./mosquitto/data:/mosquitto/data
-      - ./mosquitto/log:/mosquitto/log
-    networks:
-      - homelab-network
+      - ./esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
 
 networks:
   homelab-network:
