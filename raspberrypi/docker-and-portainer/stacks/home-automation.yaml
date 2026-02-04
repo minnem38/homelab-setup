@@ -9,11 +9,13 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: always
     privileged: true
+    # Added for Argon Fan Control
+    devices:
+      - /dev/i2c-1:/dev/i2c-1
     ports:
       - "8123:8123"
     networks:
       - homelab-network
-
   esphome:
     image: ghcr.io/esphome/esphome
     container_name: esphome
