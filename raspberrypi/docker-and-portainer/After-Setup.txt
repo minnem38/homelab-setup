@@ -1,0 +1,1 @@
+After you have set up docker and portainer (https://github.com/minnem38/homelab-setup/blob/main/raspberrypi/commands-to-do-first.txt), you have to log into your portainer dashboard and add a network. The defaults are good you just have to name it "homelab-network"
