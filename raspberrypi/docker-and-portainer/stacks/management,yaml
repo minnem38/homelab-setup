@@ -12,7 +12,7 @@ services:
     networks:
       - homelab-network
     environment:
-      - ALLOWED_HOSTS=yourdomain.com #needed if you are running it behind a cloudflare tunnel
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.deslimbos.nl,192.168.x.x
 
   pterodactyl-panel:
     image: ghcr.io/pterodactyl/panel:latest
