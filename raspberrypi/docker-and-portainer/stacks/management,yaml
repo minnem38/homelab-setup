@@ -11,6 +11,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - homelab-network
+    environment:
+      - ALLOWED_HOSTS=yourdomain.com #needed if you are running it behind a cloudflare tunnel
 
   pterodactyl-panel:
     image: ghcr.io/pterodactyl/panel:latest
