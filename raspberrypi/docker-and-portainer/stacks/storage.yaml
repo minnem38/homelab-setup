@@ -4,14 +4,21 @@ services:
     image: dperson/samba
     container_name: samba
     restart: always
+    environment:
+      - TZ=Europe/Amsterdam
     ports:
-      - "139:139"
-      - "445:445"
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139/tcp"
+      - "445:445/tcp"
     volumes:
-      - /services/samba/shares/RPiShare:/sharepath # i use /services/samba/shares/RPiShare but you can use what u want, it just has to exist
-    command: -u "user;password" -s "RPiShare;/sharepath;yes;no" -p
-    networks:
-      - homelab-network
+      - /services/samba/shares/RPiShare:/sharepath
+      - /media:/hamedia
+    command: >
+      -u "user;password"
+      -s "RPiShare;/sharepath;yes;no"
+      -s "HAMedia;/hamedia;yes;no"
+      -p
 
 networks:
   homelab-network:
