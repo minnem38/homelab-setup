@@ -9,7 +9,7 @@ services:
       - "445:445"
     volumes:
       - /services/samba/shares/RPiShare:/sharepath # i use /services/samba/shares/RPiShare but you can use what u want, it just has to exist
-    command: -u "YOURUSERHERE;YOURPASSWORDHERE" -s "RPiShare;/sharepath;yes;no"
+    command: -u "user;password" -s "RPiShare;/sharepath;yes;no" -p
     networks:
       - homelab-network
 
