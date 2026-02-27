@@ -4,18 +4,17 @@ services:
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
+
+    network_mode: host 
     volumes:
       - ./homeassistant/config:/config
+      - /media:/media     
       - /etc/localtime:/etc/localtime:ro
     restart: always
     privileged: true
-    # Added for Argon Fan Control
     devices:
       - /dev/i2c-1:/dev/i2c-1
-    ports:
-      - "8123:8123"
-    networks:
-      - homelab-network
+
   esphome:
     image: ghcr.io/esphome/esphome
     container_name: esphome
