@@ -1,20 +1,22 @@
+---
 version: "3.8"
-
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
-
-    network_mode: host 
+    image: ghcr.io/home-assistant/home-assistant:stable
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     volumes:
       - ./homeassistant/config:/config
-      - /media:/media     
+      - /media:/media
       - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
     restart: always
     privileged: true
     devices:
       - /dev/i2c-1:/dev/i2c-1
-
   esphome:
     image: ghcr.io/esphome/esphome
     container_name: esphome
@@ -24,11 +26,10 @@ services:
       - ./esphome/config:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "6052:6052"
-      - "6123:6123"
+      - 6052:6052
+      - 6123:6123
     networks:
       - homelab-network
-
 networks:
   homelab-network:
     external: true
