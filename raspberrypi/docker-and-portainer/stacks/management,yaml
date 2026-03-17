@@ -12,7 +12,7 @@ services:
     networks:
       - homelab-network
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=homepage.deslimbos.nl,192.168.x.x
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.yourdomain.com,192.168.x.x
 
   pterodactyl-panel:
     image: ghcr.io/pterodactyl/panel:latest
